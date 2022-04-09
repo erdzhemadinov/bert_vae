@@ -24,7 +24,7 @@ parser.add_argument('--test_model_path', type=str, default=None)
 # Dataset
 ################
 parser.add_argument('--dataset_code', type=str, default='ml-20m', choices=DATASETS.keys())
-parser.add_argument('--min_rating', type=int, default=4, help='Only keep ratings greater than equal to this value')
+parser.add_argument('--min_rating', type=int, default=0.001, help='Only keep ratings greater than equal to this value')
 parser.add_argument('--min_uc', type=int, default=5, help='Only keep users with more than min_uc ratings')
 parser.add_argument('--min_sc', type=int, default=0, help='Only keep items with more than min_sc ratings')
 parser.add_argument('--split', type=str, default='leave_one_out', help='How to split the datasets')
@@ -38,8 +38,8 @@ parser.add_argument('--eval_set_size', type=int, default=500,
 parser.add_argument('--dataloader_code', type=str, default='bert', choices=DATALOADERS.keys())
 parser.add_argument('--dataloader_random_seed', type=float, default=0.0)
 parser.add_argument('--train_batch_size', type=int, default=64)
-parser.add_argument('--val_batch_size', type=int, default=64)
-parser.add_argument('--test_batch_size', type=int, default=64)
+parser.add_argument('--val_batch_size', type=int, default=16)
+parser.add_argument('--test_batch_size', type=int, default=16)
 
 ################
 # NegativeSampler
@@ -70,12 +70,12 @@ parser.add_argument('--momentum', type=float, default=None, help='SGD momentum')
 parser.add_argument('--decay_step', type=int, default=15, help='Decay step for StepLR')
 parser.add_argument('--gamma', type=float, default=0.1, help='Gamma for StepLR')
 # epochs #
-parser.add_argument('--num_epochs', type=int, default=100, help='Number of epochs for training')
+parser.add_argument('--num_epochs', type=int, default=30, help='Number of epochs for training')
 # logger #
 parser.add_argument('--log_period_as_iter', type=int, default=12800)
 # evaluation #
 parser.add_argument('--metric_ks', nargs='+', type=int, default=[10, 20, 50], help='ks for Metric@k')
-parser.add_argument('--best_metric', type=str, default='NDCG@10', help='Metric for determining the best model')
+parser.add_argument('--best_metric', type=str, default='NDCG@12', help='Metric for determining the best model')
 # Finding optimal beta for VAE #
 parser.add_argument('--find_best_beta', type=bool, default=False, 
                     help='If set True, the trainer will anneal beta all the way up to 1.0 and find the best beta')

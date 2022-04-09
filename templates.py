@@ -34,8 +34,8 @@ def set_template(args):
         args.decay_step = 25
         args.gamma = 1.0
         args.num_epochs = 100 if args.dataset_code == 'ml-1m' else 200
-        args.metric_ks = [1, 5, 10, 20, 50, 100]
-        args.best_metric = 'NDCG@10'
+        args.metric_ks = [1, 5, 10, 12,  20, 50, 100]
+        args.best_metric = 'NDCG@12'
 
         args.model_code = 'bert'
         args.model_init_seed = 0
@@ -73,7 +73,7 @@ def set_template(args):
         args.enable_lr_schedule = False
         args.weight_decay = 0.00
         args.num_epochs = 100 if args.dataset_code == 'ml-1m' else 200
-        args.metric_ks = [1, 5, 10, 20, 50, 100]
+        args.metric_ks = [1, 5, 10, 12, 20, 50, 100]
         args.best_metric = 'NDCG@10'
 
         args.model_code = 'dae'
@@ -109,7 +109,7 @@ def set_template(args):
         args.enable_lr_schedule = False
         args.weight_decay = 0.01
         args.num_epochs = 100 if args.dataset_code == 'ml-1m' else 200
-        args.metric_ks = [1, 5, 10, 20, 50, 100]
+        args.metric_ks = [1, 5, 10, 12, 20, 50, 100]
         args.best_metric = 'NDCG@10'
         args.total_anneal_steps = 3000 if args.dataset_code == 'ml-1m' else 20000
         args.find_best_beta = True
@@ -147,7 +147,7 @@ def set_template(args):
         args.enable_lr_schedule = False
         args.weight_decay = 0.01
         args.num_epochs = 100 if args.dataset_code == 'ml-1m' else 200
-        args.metric_ks = [1, 5, 10, 20, 50, 100]
+        args.metric_ks = [1, 5, 10, 12, 20, 50, 100]
         args.best_metric = 'NDCG@100'
         args.find_best_beta = False
         args.anneal_cap = 0.342

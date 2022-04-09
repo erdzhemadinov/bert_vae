@@ -27,8 +27,20 @@ class ML1MDataset(AbstractDataset):
 
     def load_ratings_df(self):
         folder_path = self._get_rawdata_folder_path()
-        file_path = folder_path.joinpath('ratings.dat')
-        df = pd.read_csv(file_path, sep='::', header=None)
+        # file_path = folder_path.joinpath('ratings.dat')
+        # df = pd.read_csv(file_path, sep='::', header=None)
+        #
+        file_path = folder_path.joinpath('transactions_train.csv')
+
+        df = pd.read_csv(file_path).drop(['sales_channel_id'], axis=1).tail(850000)
+        print(df.head())
+
+        df.rename(columns={'t_dat': 'timestamp',
+                           'customer_id': 'uid',
+                           'article_id':  'sid',
+                           'price': 'rating'})
+
+
         df.columns = ['uid', 'sid', 'rating', 'timestamp']
         return df
 

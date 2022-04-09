@@ -32,7 +32,7 @@ class ML1MDataset(AbstractDataset):
         #
         file_path = folder_path.joinpath('transactions_train.csv')
 
-        df = pd.read_csv(file_path).drop(['sales_channel_id'], axis=1).tail(850000)
+        df = pd.read_csv(file_path).drop(['sales_channel_id'], axis=1).head(1000000)
         print(df.head())
 
         df.rename(columns={'t_dat': 'timestamp',
